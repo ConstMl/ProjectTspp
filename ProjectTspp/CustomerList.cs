@@ -66,6 +66,14 @@ namespace ProjectTspp
             {
                 Console.Write("Данные введены неверно, повторите ввод: ");
             }
+            foreach (var cust in customers)
+            {
+                if (cust.PasportSeriesNumber == tempLong)
+                {
+                    Console.WriteLine("Данный клиент уже есть в базе.");
+                    return;
+                }
+            }
             item.PasportSeriesNumber = tempLong;
 
             Console.Write("Номер телефона: ");
@@ -82,7 +90,7 @@ namespace ProjectTspp
         public void Search()
         {
             long pasportSeriesNumber;
-            Console.Write("Серия и номер паспорта");
+            Console.Write("Серия и номер паспорта: ");
             while (!Int64.TryParse(Console.ReadLine(), out pasportSeriesNumber))
             {
                 Console.Write("Данные введены неверно, повторите ввод: ");
