@@ -20,17 +20,34 @@ namespace ProjectTspp
 
         public void View()
         {
-            throw new NotImplementedException();
+            foreach (var cust in customers)
+            {
+                Console.WriteLine($"|{cust.Name}\t |{cust.Surname}\t |{cust.PasportSeriesNumber}\t |{cust.Phone}\t |");
+            }
         }
 
         public void Add()
         {
-            throw new NotImplementedException();
-            /*
-            Customer item = new Customer();
+            var item = new Customer();
+            Console.Write("Имя: ");
+            item.Name = Console.ReadLine();
+            Console.Write("Фамилия: ");
+            item.Surname = Console.ReadLine();
+            Console.Write("Номер паспорта: ");
+            long temp;
+            while (!Int64.TryParse(Console.ReadLine(), out temp))
+            {
+                Console.Write("Данные введены неверно, повторите ввод: ");
+            }
+            item.PasportSeriesNumber = temp;
+            Console.Write("Номер телефона: ");
+            while (!Int64.TryParse(Console.ReadLine(), out temp))
+            {
+                Console.Write("Данные введены неверно, повторите ввод: ");
+            }
+            item.Phone = temp;
             customers.Add(item);
             Console.WriteLine($"Клиен добавлен {customers.Count}");
-            */
         }
 
         public void Search()

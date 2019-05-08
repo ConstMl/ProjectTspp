@@ -6,8 +6,8 @@ namespace ProjectTspp
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int PasportSeriesNumber { get; set; }
-        public int Phone { get; set; }
+        public long PasportSeriesNumber { get; set; }
+        public long Phone { get; set; }
 
         public void ViewContract()
         {
