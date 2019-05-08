@@ -5,19 +5,35 @@ namespace ProjectTspp
 {
     class CustomerList
     {
-        public List<Customer> customers = new List<Customer>();
+        private List<Customer> customers = new List<Customer>();
 
-        public void ViewList()
+        private static CustomerList instance;
+        private CustomerList() { }
+        public static CustomerList GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new CustomerList();
+            }
+            return instance;
+        }
+
+        public void View()
         {
             throw new NotImplementedException();
         }
 
-        public void AddCustomer()
+        public void Add()
         {
             throw new NotImplementedException();
+            /*
+            Customer item = new Customer();
+            customers.Add(item);
+            Console.WriteLine($"Клиен добавлен {customers.Count}");
+            */
         }
 
-        public void SearchCustomer()
+        public void Search()
         {
             throw new NotImplementedException();
         }

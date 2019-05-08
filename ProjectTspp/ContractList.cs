@@ -7,17 +7,28 @@ namespace ProjectTspp
     {
         List<Contract> contracts = new List<Contract>();
 
-        public void ViewList()
+        private static ContractList instance;
+        private ContractList() { }
+        public static ContractList GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ContractList();
+            }
+            return instance;
+        }
+
+        public void View()
         {
             throw new NotImplementedException();
         }
 
-        public void AddContract()
+        public void Add()
         {
             throw new NotImplementedException();
         }
 
-        public void SearchContract()
+        public void Search()
         {
             throw new NotImplementedException();
         }

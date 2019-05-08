@@ -8,34 +8,25 @@ namespace ProjectTspp
         public string Sutname { get; set; }
         public int PasportSeriesNumber { get; set; }
 
-        public void ViewContractList()
+        CustomerList customerList;
+        ContractList contractList;
+
+        public InsuranceSpecialist()
         {
-            throw new NotImplementedException();
+            customerList = CustomerList.GetInstance();
+            contractList = ContractList.GetInstance();
         }
 
-        public void ViewCustomerList()
-        {
-            throw new NotImplementedException();
-        }
+        public void ViewContractList() => contractList.View();
 
-        public void AddConract()
-        {
-            throw new NotImplementedException();
-        }
+        public void ViewCustomerList() => customerList.View();
 
-        public void AddCustomer()
-        {
-            throw new NotImplementedException();
-        }
+        public void AddConract() => contractList.Add();
 
-        public void SearchContract()
-        {
-            throw new NotImplementedException();
-        }
+        public void AddCustomer() => customerList.Add();
 
-        public void SearchCustomer()
-        {
-            throw new NotImplementedException();
-        }
+        public void SearchContract() => contractList.Search();
+
+        public void SearchCustomer() => customerList.Search();
     }
 }
