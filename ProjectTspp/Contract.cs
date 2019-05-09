@@ -7,7 +7,7 @@ namespace ProjectTspp
     {
         public Customer Cust { get; set; }
         public DateTime Validity { get; set; }
-        public int InsuranceAmuont { get; set; }
+        public long InsuranceAmuont { get; set; }
         public int CompensationPrecentage { get; set; }
 
         public void Activate()

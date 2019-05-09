@@ -15,6 +15,8 @@ namespace ProjectTspp
             InsuranceSpecialist spec2 = new InsuranceSpecialist();
             //spec2.AddCustomer();
             spec2.ViewCustomerList();
+            spec2.SearchCustomer();
+            //spec2.AddConract();
             //spec2.SearchCustomer();
             Console.WriteLine("The end");
 

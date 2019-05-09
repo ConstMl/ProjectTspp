@@ -22,6 +22,8 @@ namespace ProjectTspp
             return instance;
         }
 
+        public List<Customer> Get() => customers;
+
         public void View()
         {
             Console.WriteLine($"------------------------------------------------------------");
@@ -36,11 +38,7 @@ namespace ProjectTspp
 
         private void ViewItem(Customer cust)
         {
-            Console.WriteLine($"------------------------------------------------------------");
-            Console.WriteLine($"|Имя            |Фамилия        |Паспорт     |Телефон      |");
-            Console.WriteLine($"------------------------------------------------------------");
             Console.WriteLine($"|{cust.Name,-15}|{cust.Surname,-15}|{cust.PasportSeriesNumber,12}|{cust.Phone,13}|");
-            Console.WriteLine($"------------------------------------------------------------");
         }
 
         public void Add()
@@ -90,6 +88,7 @@ namespace ProjectTspp
 
             customers.Add(item);
             Console.WriteLine($"Клиен добавлен {customers.Count}");
+            Console.ReadKey();
         }
 
         public void Search()
@@ -105,6 +104,12 @@ namespace ProjectTspp
             {
                 if (cust.PasportSeriesNumber == pasportSeriesNumber)
                 {
+                    if (!searchFlag)
+                    {
+                        Console.WriteLine($"------------------------------------------------------------");
+                        Console.WriteLine($"|Имя            |Фамилия        |Паспорт     |Телефон      |");
+                        Console.WriteLine($"------------------------------------------------------------");
+                    }
                     ViewItem(cust);
                     searchFlag = true;
                     break;
@@ -113,6 +118,10 @@ namespace ProjectTspp
             if (!searchFlag)
             {
                 Console.WriteLine("Такого клиента не существует.");
+            }
+            else
+            {
+                Console.WriteLine($"------------------------------------------------------------");
             }
         }
 
