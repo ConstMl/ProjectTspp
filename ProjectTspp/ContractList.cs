@@ -25,51 +25,24 @@ namespace ProjectTspp
             Console.WriteLine("-----------------------------------------------------------------");
             foreach (var cont in contracts)
             {
-                Console.WriteLine($"|{cont.Cust.Surname,-15}|{cont.Validity.ToShortDateString(),15}|{cont.InsuranceAmuont,15}|{cont.CompensationPrecentage,15}");
+                cont.Print();
             }
-            Console.WriteLine("-----------------------------------------------------------------");
-        }
-        private void ViewItem(Contract cont)
-        {
-            Console.WriteLine($"|{cont.Cust.Surname,-15}|{cont.Validity.ToShortDateString(),15}|{cont.InsuranceAmuont,15}|{cont.CompensationPrecentage,15}");
         }
 
-        public void Add()
+        public void Add(ContractType contractType)
         {
-            var item = new Contract();
-            long tempLong;
-            Console.Write("Серия и номер паспорта клиента: ");
-            while (!Int64.TryParse(Console.ReadLine(), out tempLong))
-            {
-                Console.Write("Данные введены неверно, повторите ввод: ");
-            }
-            var custList = CustomerList.GetInstance();
-            foreach (var cust in custList.Get())
-            {
-                if (cust.PasportSeriesNumber == tempLong)
-                {
-                    item.Cust = cust;
-                }
-            }
+            var item = ContractFactory.GetNewContract(contractType);
+
+            item.SetCust();
             if (item.Cust == null)
             {
-                Console.WriteLine("Данного клиента нет в базе. Заключение констракта не может быть выполнено.");
-                Console.ReadKey();
                 return;
             }
-            item.Validity = DateTime.Now.AddYears(1);
-            Console.Write("Страховая сумма: ");
-            while (!Int64.TryParse(Console.ReadLine(), out tempLong))
-            {
-                Console.Write("Данные введены неверно, повторите ввод: ");
-            }
-            item.InsuranceAmuont = tempLong;
-            Console.Write("Процент выплаты: ");
-            while (!Int64.TryParse(Console.ReadLine(), out tempLong) || (tempLong < 1 || tempLong > 100))
-            {
-                Console.Write("Данные введены неверно, повторите ввод: ");
-            }
-            item.CompensationPrecentage = (int)tempLong;
+            item.SetValidity();
+            item.SetInsuranceAmuont();
+            item.SetCompensationPrecentage();
+            item.SetSpecialFields();
+
             contracts.Add(item);
             Console.WriteLine($"Контракт заключен {contracts.Count}");
             Console.ReadKey();
@@ -94,7 +67,7 @@ namespace ProjectTspp
                         Console.WriteLine("|Фамилия клиента|Срок действия  |Страховая сумма|Процент выплаты|");
                         Console.WriteLine("-----------------------------------------------------------------");
                     }
-                    ViewItem(cont);
+                    cont.Print();
                     searchFlag = true;
                 }
             }
@@ -102,11 +75,6 @@ namespace ProjectTspp
             {
                 Console.WriteLine("Договоры не найдены.");
             }
-            else
-            {
-                Console.WriteLine("-----------------------------------------------------------------");
-            }
         }
-
     }
 }

@@ -17,7 +17,7 @@ namespace ProjectTspp
             if (instance == null)
             {
                 instance = new CustomerList();
-                instance.ReadAndDeserialize(instance.custometListPath);
+                //instance.ReadAndDeserialize(instance.custometListPath);
             }
             return instance;
         }
@@ -31,60 +31,28 @@ namespace ProjectTspp
             Console.WriteLine($"------------------------------------------------------------");
             foreach (var cust in customers)
             {
-                Console.WriteLine($"|{cust.Name,-15}|{cust.Surname,-15}|{cust.PasportSeriesNumber,12}|{cust.Phone,13}|");
+                cust.Print();
             }
             Console.WriteLine($"------------------------------------------------------------");
-        }
-
-        private void ViewItem(Customer cust)
-        {
-            Console.WriteLine($"|{cust.Name,-15}|{cust.Surname,-15}|{cust.PasportSeriesNumber,12}|{cust.Phone,13}|");
         }
 
         public void Add()
         {
             var item = new Customer();
-            long tempLong;
-            string tempString;
 
-            Console.Write("Имя: "); tempString = Console.ReadLine();
-            while (tempString.Length > 12)
-            {
-                Console.Write("Данные введены неверно (длинное имя), повторите ввод: ");
-                tempString = Console.ReadLine();
-            }
-            item.Name = tempString;
-
-            Console.Write("Фамилия: "); tempString = Console.ReadLine();
-            while (tempString.Length > 12)
-            {
-                Console.Write("Данные введены неверно (длинная фамилия), повторите ввод: ");
-                tempString = Console.ReadLine();
-            }
-            item.Surname = tempString;
-
-            Console.Write("Серия и номер паспорта: ");
-            while (!Int64.TryParse(Console.ReadLine(), out tempLong))
-            {
-                Console.Write("Данные введены неверно, повторите ввод: ");
-            }
+            item.SetName();
+            item.SetSurname();
+            item.SetPasportSeriesNumber();
             foreach (var cust in customers)
             {
-                if (cust.PasportSeriesNumber == tempLong)
+                if (cust.PasportSeriesNumber == item.PasportSeriesNumber)
                 {
                     Console.WriteLine("Данный клиент уже есть в базе.");
                     Console.ReadKey();
                     return;
                 }
             }
-            item.PasportSeriesNumber = tempLong;
-
-            Console.Write("Номер телефона: ");
-            while (!Int64.TryParse(Console.ReadLine(), out tempLong))
-            {
-                Console.Write("Данные введены неверно, повторите ввод: ");
-            }
-            item.Phone = tempLong;
+            item.SetPhone();
 
             customers.Add(item);
             Console.WriteLine($"Клиен добавлен {customers.Count}");
@@ -110,7 +78,7 @@ namespace ProjectTspp
                         Console.WriteLine($"|Имя            |Фамилия        |Паспорт     |Телефон      |");
                         Console.WriteLine($"------------------------------------------------------------");
                     }
-                    ViewItem(cust);
+                    cust.Print();
                     searchFlag = true;
                     break;
                 }

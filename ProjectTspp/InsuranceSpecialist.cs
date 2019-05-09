@@ -21,7 +21,7 @@ namespace ProjectTspp
 
         public void ViewCustomerList() => customerList.View();
 
-        public void AddConract() => contractList.Add();
+        public void AddConract(ContractType contractType) => contractList.Add(contractType);
 
         public void AddCustomer() => customerList.Add();
 
