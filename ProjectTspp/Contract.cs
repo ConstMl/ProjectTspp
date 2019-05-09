@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace ProjectTspp
 {
-    [Serializable]
+    [XmlInclude(typeof(ContractLifeHealth))]
+    [XmlInclude(typeof(ContractMovableProperty))]
+    [XmlInclude(typeof(ContactNotMovableProperty))]
     public abstract class Contract
     {
-        public Customer Cust { get; private set; }
-        public DateTime Validity { get; private set; }
-        public long InsuranceAmuont { get; private set; }
-        public int CompensationPrecentage { get; private set; }
+        public Customer Cust { get; set; }
+        public DateTime Validity { get; set; }
+        public long InsuranceAmuont { get; set; }
+        public int CompensationPrecentage { get; set; }
 
         public abstract void Print();
         public abstract void SetSpecialFields();

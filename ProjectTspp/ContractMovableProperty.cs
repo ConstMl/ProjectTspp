@@ -5,7 +5,7 @@ namespace ProjectTspp
     [Serializable]
     public class ContractMovableProperty : Contract
     {
-        public int RiskOfLose { get; private set; }
+        public int RiskOfLose { get; set; }
 
         public override void Print()
         {

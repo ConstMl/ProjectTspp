@@ -5,7 +5,7 @@ namespace ProjectTspp
     [Serializable]
     public class ContactNotMovableProperty : Contract
     {
-        public string Location { get; private set; }
+        public string Location { get; set; }
 
         public override void Print()
         {

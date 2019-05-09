@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace ProjectTspp
 {
     class ContractList
     {
+        public string contractListPath = "contractList";
         List<Contract> contracts = new List<Contract>();
 
         private static ContractList instance;
@@ -14,6 +17,7 @@ namespace ProjectTspp
             if (instance == null)
             {
                 instance = new ContractList();
+                instance.ReadAndDeserialize(instance.contractListPath);
             }
             return instance;
         }
@@ -74,6 +78,25 @@ namespace ProjectTspp
             if (!searchFlag)
             {
                 Console.WriteLine("Договоры не найдены.");
+            }
+        }
+
+        private void ReadAndDeserialize(string path)
+        {
+            var serializer = new XmlSerializer(typeof(List<Contract>));
+            using (var reader = new StreamReader(path))
+            {
+                contracts = (List<Contract>)serializer.Deserialize(reader);
+                return;
+            }
+        }
+
+        public void SerializeAndSave(string path)
+        {
+            var serializer = new XmlSerializer(typeof(List<Contract>));
+            using (var writer = new StreamWriter(path))
+            {
+                serializer.Serialize(writer, contracts);
             }
         }
     }

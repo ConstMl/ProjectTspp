@@ -5,7 +5,7 @@ namespace ProjectTspp
     [Serializable]
     public class ContractLifeHealth : Contract
     {
-        public long HospitalCard { get; private set; }
+        public long HospitalCard { get; set; }
 
         public override void Print()
         {

@@ -5,12 +5,22 @@ namespace ProjectTspp
     [Serializable]
     public class Customer
     {
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public long PasportSeriesNumber { get; private set; }
-        public long Phone { get; private set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public long PasportSeriesNumber { get; set; }
+        public long Phone { get; set; }
 
         public void ViewContract()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RenewContract()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActivateContract()
         {
             throw new NotImplementedException();
         }

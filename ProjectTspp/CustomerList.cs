@@ -7,7 +7,7 @@ namespace ProjectTspp
 {
     class CustomerList
     {
-        private string custometListPath = "customerList";
+        public string customerListPath = "customerList";
         private List<Customer> customers = new List<Customer>();
 
         private static CustomerList instance;
@@ -17,7 +17,7 @@ namespace ProjectTspp
             if (instance == null)
             {
                 instance = new CustomerList();
-                //instance.ReadAndDeserialize(instance.custometListPath);
+                instance.ReadAndDeserialize(instance.customerListPath);
             }
             return instance;
         }
@@ -39,7 +39,6 @@ namespace ProjectTspp
         public void Add()
         {
             var item = new Customer();
-
             item.SetName();
             item.SetSurname();
             item.SetPasportSeriesNumber();
@@ -53,10 +52,8 @@ namespace ProjectTspp
                 }
             }
             item.SetPhone();
-
             customers.Add(item);
-            Console.WriteLine($"Клиен добавлен {customers.Count}");
-            Console.ReadKey();
+            Console.WriteLine($"Клиен добавлен. Всего клиентов: {customers.Count}");
         }
 
         public void Search()
