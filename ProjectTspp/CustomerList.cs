@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace ProjectTspp
 {
     class CustomerList
     {
+        private string custometListPath = "customerList";
         private List<Customer> customers = new List<Customer>();
 
         private static CustomerList instance;
@@ -14,6 +17,7 @@ namespace ProjectTspp
             if (instance == null)
             {
                 instance = new CustomerList();
+                instance.ReadAndDeserialize(instance.custometListPath);
             }
             return instance;
         }
@@ -71,6 +75,7 @@ namespace ProjectTspp
                 if (cust.PasportSeriesNumber == tempLong)
                 {
                     Console.WriteLine("Данный клиент уже есть в базе.");
+                    Console.ReadKey();
                     return;
                 }
             }
@@ -108,6 +113,25 @@ namespace ProjectTspp
             if (!searchFlag)
             {
                 Console.WriteLine("Такого клиента не существует.");
+            }
+        }
+
+        private void ReadAndDeserialize(string path)
+        {
+            var serializer = new XmlSerializer(typeof(List<Customer>));
+            using (var reader = new StreamReader(path))
+            {
+                customers = (List<Customer>)serializer.Deserialize(reader);
+                return;
+            }
+        }
+
+        public void SerializeAndSave(string path)
+        {
+            var serializer = new XmlSerializer(typeof(List<Customer>));
+            using (var writer = new StreamWriter(path))
+            {
+                serializer.Serialize(writer, customers);
             }
         }
     }

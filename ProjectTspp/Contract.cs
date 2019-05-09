@@ -2,7 +2,8 @@
 
 namespace ProjectTspp
 {
-    class Contract
+    [Serializable]
+    public class Contract
     {
         public Customer Cust { get; set; }
         public DateTime Validity { get; set; }

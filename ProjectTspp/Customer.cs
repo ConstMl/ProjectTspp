@@ -2,7 +2,8 @@
 
 namespace ProjectTspp
 {
-    class Customer
+    [Serializable]
+    public class Customer
     {
         public string Name { get; set; }
         public string Surname { get; set; }

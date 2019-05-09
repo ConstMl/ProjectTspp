@@ -10,12 +10,14 @@ namespace ProjectTspp
     {
         static void Main(string[] args)
         {
+            CustomerList customerList = CustomerList.GetInstance();
+
             InsuranceSpecialist spec2 = new InsuranceSpecialist();
-            spec2.AddCustomer();
-            spec2.AddCustomer();
+            //spec2.AddCustomer();
             spec2.ViewCustomerList();
-            spec2.SearchCustomer();
+            //spec2.SearchCustomer();
             Console.WriteLine("The end");
+
             Console.ReadKey();
         }
     }
