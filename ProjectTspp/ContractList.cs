@@ -48,8 +48,7 @@ namespace ProjectTspp
             item.SetSpecialFields();
 
             contracts.Add(item);
-            Console.WriteLine($"Контракт заключен {contracts.Count}");
-            Console.ReadKey();
+            Console.WriteLine($"Договор заключен. Всего договоров: {contracts.Count}");
         }
 
         public void Search()
