@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractFactory.cs" />
+    <Compile Include="ContractType.cs" />
     <Compile Include="ContactNotMovableProperty.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="ContractLifeHealth.cs" />
@@ -50,11 +52,14 @@
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerList.cs" />
     <Compile Include="InsuranceSpecialist.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuItems.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

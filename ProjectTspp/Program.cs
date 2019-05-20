@@ -126,19 +126,21 @@ namespace ProjectTspp
                                     Console.Clear();
                                     switch(Menu.Menu.PrintMenu(Menu.MenuItems.clientOption, "Для выбора пунта меню нажмите Enter"))
                                     {
-                                        case 1:
+                                        case 1: // просмотр договоров
                                             {
                                                 Console.Clear();
+                                                currentCustomer.ViewContract();
                                                 Menu.Menu.WaitKey();
                                                 break;
                                             }
-                                        case 2:
+                                        case 2: // продление договора
                                             {
                                                 Console.Clear();
+                                                currentCustomer.RenewContract();
                                                 Menu.Menu.WaitKey();
                                                 break;
                                             }
-                                        case 3:
+                                        case 3: // активация договора
                                             {
                                                 Console.Clear();
                                                 Menu.Menu.WaitKey();

@@ -10,15 +10,13 @@ namespace ProjectTspp
         public long PasportSeriesNumber { get; set; }
         public long Phone { get; set; }
 
-        public void ViewContract()
-        {
-            throw new NotImplementedException();
-        }
+        ContractList contractList;
 
-        public void RenewContract()
-        {
-            throw new NotImplementedException();
-        }
+        public Customer() => contractList = ContractList.GetInstance();
+
+        public void ViewContract() => contractList.ViewByCustomer(this);
+
+        public void RenewContract() => contractList.RenewContract(this);
 
         public void ActivateContract()
         {

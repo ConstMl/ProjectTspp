@@ -33,6 +33,53 @@ namespace ProjectTspp
             }
         }
 
+        public void ViewByCustomer(Customer customer)
+        {
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("|Фамилия клиента|Срок действия  |Страховая сумма|Процент выплаты|");
+            Console.WriteLine("-----------------------------------------------------------------");
+            foreach (var cont in contracts)
+            {
+                if (cont.Cust.PasportSeriesNumber == customer.PasportSeriesNumber)
+                {
+                    cont.Print();
+                }
+            }
+        }
+
+        public void RenewContract(Customer customer)
+        {
+            int year;
+            Console.Write("Количество лет: ");
+            while (!Int32.TryParse(Console.ReadLine(), out year) || (year > 5 || year < 1 ))
+            {
+                Console.Write("Данные введены неверно, повторите ввод: ");
+            }
+            int num;
+            Console.Write("Порядковый номер вешего договора при просмотре: ");
+            while (!Int32.TryParse(Console.ReadLine(), out num) || num < 1)
+            {
+                Console.Write("Данные введены неверно, повторите ввод: ");
+            }
+            foreach (var cont in contracts)
+            {
+                if (cont.Cust.PasportSeriesNumber == customer.PasportSeriesNumber)
+                {
+                    if (num == 1)
+                    {
+                        cont.Validity = cont.Validity.AddYears(year);
+                        Console.WriteLine("Договор продлен.");
+                        return;
+                    }
+                    else
+                    {
+                        num--;
+                    }
+                }
+            }
+            Console.WriteLine("Договор не продлен, либо такого контракте нет в списке.");
+        }
+
         public void Add(ContractType contractType)
         {
             var item = ContractFactory.GetNewContract(contractType);
