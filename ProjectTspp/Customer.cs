@@ -18,10 +18,7 @@ namespace ProjectTspp
 
         public void RenewContract() => contractList.RenewContract(this);
 
-        public void ActivateContract()
-        {
-            throw new NotImplementedException();
-        }
+        public void ActivateContract() => contractList.ActivateContract(this);
 
         public void Print()
         {

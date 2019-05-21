@@ -24,4 +24,16 @@
     <CompensationPrecentage>70</CompensationPrecentage>
     <Location>Omega</Location>
   </Contract>
+  <Contract xsi:type="ContractLifeHealth">
+    <Cust>
+      <Name>qwe3</Name>
+      <Surname>qwe3</Surname>
+      <PasportSeriesNumber>5555555555</PasportSeriesNumber>
+      <Phone>452289</Phone>
+    </Cust>
+    <Validity>2020-05-21T20:28:23.0695511+03:00</Validity>
+    <InsuranceAmuont>150000</InsuranceAmuont>
+    <CompensationPrecentage>65</CompensationPrecentage>
+    <HospitalCard>215</HospitalCard>
+  </Contract>
 </ArrayOfContract>

@@ -143,6 +143,7 @@ namespace ProjectTspp
                                         case 3: // активация договора
                                             {
                                                 Console.Clear();
+                                                currentCustomer.ActivateContract();
                                                 Menu.Menu.WaitKey();
                                                 break;
                                             }

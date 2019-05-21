@@ -80,6 +80,41 @@ namespace ProjectTspp
             Console.WriteLine("Договор не продлен, либо такого контракте нет в списке.");
         }
 
+        public void ActivateContract(Customer customer)
+        {
+            int num;
+            Console.Write("Порядковый номер вешего договора при просмотре: ");
+            while (!Int32.TryParse(Console.ReadLine(), out num) || num < 1)
+            {
+                Console.Write("Данные введены неверно, повторите ввод: ");
+            }
+            foreach (var cont in contracts)
+            {
+                if (cont.Cust.PasportSeriesNumber == customer.PasportSeriesNumber)
+                {
+                    if (num == 1)
+                    {
+                        if (cont.Validity > DateTime.Now)
+                        {
+                            Console.WriteLine("Договор активирован.");
+                            double payoutAmount = cont.InsuranceAmuont * (double)cont.CompensationPrecentage / 100.0;
+                            Console.WriteLine($"Сумма выплаты: {payoutAmount:0.##}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Договор не может быть активирован. Срок договора истек.");
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        num--;
+                    }
+                }
+            }
+            Console.WriteLine("Такого контракте нет в списке.");
+        }
+
         public void Add(ContractType contractType)
         {
             var item = ContractFactory.GetNewContract(contractType);
